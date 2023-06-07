@@ -1,10 +1,12 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Controller
 public class CalculatorController {
 
     @Autowired
@@ -27,10 +29,19 @@ public class CalculatorController {
 
     @GetMapping("/eval")
     public String eval(
-
-            @RequestParam(name = "operation", required = false, defaultValue = "1+3=") String eval,
+            @RequestParam(name = "operation", required = false, defaultValue = "1+4=") String eval,
             Model model) {
 
-                return "calculator";
+                String result = calculatorService.eval(eval);
+                if (result.equals("ERROR")) {
+                    result = eval;
+                    model.addAttribute("error", true);
+                    model.addAttribute("result", result);
+                } else {
+                    model.addAttribute("error", false);
+                    model.addAttribute("result", result);
+                }
+
+        return "eval";
     }
 }
