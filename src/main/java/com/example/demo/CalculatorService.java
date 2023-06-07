@@ -95,7 +95,7 @@ public class CalculatorService {
                 break;
             case SECOND_FIGURE:
                 num2 = num2 * 10 + num;
-                resultStr = resultStr + Double.toString(num);
+                resultStr = resultStr + Integer.toString(num);
                 break;
             case RESULT:
                 currentState = State.ERROR;
