@@ -18,10 +18,11 @@ public class UsersService {
         return this.convertUserEntitiesToUserDtos(userEntities);
     }
 
-    Iterable<UserDto> convertUserEntitiesToUserDtos (List<UserEntity> userEntities) {
+    Iterable<UserDto> convertUserEntitiesToUserDtos(List<UserEntity> userEntities) {
         List<UserDto> userDtos = new ArrayList<UserDto>();
         for (UserEntity ue : userEntities) {
             userDtos.add(UserDto.builder()
+                    .id(ue.getId())
                     .email(ue.getEmail())
                     .firstName(ue.getFirstName())
                     .lastName(ue.getLastName())
@@ -44,5 +45,54 @@ public class UsersService {
         this.usersRepository.save(userEntity);
         return user;
     }
-    
+
+    public UserDto modifyUser(UserDto user, long id) {
+        UserEntity userEntity = this.usersRepository.findById(id);
+        if (userEntity == null) {
+            return null;
+        }
+        userEntity.setFirstName(user.getFirstName());
+        userEntity.setLastName(user.getLastName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setAge(user.getAge());
+        userEntity.setDniStr(user.getDniStr());
+        this.usersRepository.save(userEntity);
+        return user;
+    }
+
+    public UserDto deleteUserById(long id) {
+        UserEntity userEntity = this.usersRepository.findById(id);
+        if (userEntity == null) {
+            return null;
+        }
+        this.usersRepository.delete(userEntity);
+        return UserDto.builder()
+                .id(userEntity.getId())
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .email(userEntity.getEmail())
+                .age(userEntity.getAge())
+                .dniStr(userEntity.getDniStr())
+                .build();
+    }
+
+    public List<UserDto> findUsers(UserDto user) {
+        List<UserEntity> userEntities = this.usersRepository.findByEmailOrDniStr(user.getEmail(), user.getDniStr());
+        if (userEntities.size() == 0) {
+            return null;
+        }
+        List <UserDto> userDtos = new ArrayList<UserDto>();
+        for (UserEntity ue : userEntities) {
+            userDtos.add(UserDto.builder()
+                    .id(ue.getId())
+                    .firstName(ue.getFirstName())
+                    .lastName(ue.getLastName())
+                    .email(ue.getEmail())
+                    .age(ue.getAge())
+                    .dniStr(ue.getDniStr())
+                    .build());
+        }
+        return userDtos;
+    }
+
 }
