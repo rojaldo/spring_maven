@@ -1,0 +1,65 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: https://localhost:8080/api/v1
+    description: Localhost server
+paths:
+  /beers:
+    get:
+      description: Get beers
+      operationId: getBeers
+      parameters: 
+        - name: name
+          in: query
+          description: Beer name
+          required: false
+          schema:
+            type: string
+        - name: abv_gte
+          in: query
+          description: ABV greater than or equal to
+          required: false
+          schema:
+            type: number
+        - name: abv_lte
+          in: query
+          description: ABV less than or equal to
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BeerResponse'
+# objects
+components:
+  schemas:
+    BeerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        tagline:
+          type: string
+        first_brewed:
+          type: string
+        description:
+          type: string
+        image_url:
+          type: string
+        abv:
+          type: number
+        ibu:
+          type: number
+        ebc:
+          type: number
+
