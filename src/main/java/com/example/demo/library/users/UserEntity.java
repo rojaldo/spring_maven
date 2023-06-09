@@ -8,6 +8,8 @@ import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 
+import com.example.demo.library.lends.LendEntity;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -60,5 +62,8 @@ public class UserEntity {
     @Pattern(regexp = "^[0-9]{8}[A-Z]$")
     @Column(unique = true, nullable = false, length = 9, columnDefinition = "VARCHAR(9)", updatable = false, name = "dni")
     private String dniStr;
+
+    @OneToMany(mappedBy = "user")
+    private List<LendEntity> lends;
 
 }

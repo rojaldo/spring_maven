@@ -15,6 +15,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 // import table
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

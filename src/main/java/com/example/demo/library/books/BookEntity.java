@@ -4,21 +4,19 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.example.demo.library.lends.LendEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Entity
 @Data
@@ -45,6 +43,9 @@ public class BookEntity {
 
     @Column(columnDefinition="TEXT")
     private String description;
+
+    @OneToMany(mappedBy = "book")
+    private List<LendEntity> lends;
 
 
 }

@@ -18,6 +18,21 @@ public class UsersService {
         return this.convertUserEntitiesToUserDtos(userEntities);
     }
 
+    public UserDto getUserById(long id){
+        UserEntity userEntity = this.usersRepository.findById(id);
+        if (userEntity == null) {
+            return null;
+        }
+        return UserDto.builder()
+                .id(userEntity.getId())
+                .email(userEntity.getEmail())
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .age(userEntity.getAge())
+                .dniStr(userEntity.getDniStr())
+                .build();
+    }
+
     Iterable<UserDto> convertUserEntitiesToUserDtos(List<UserEntity> userEntities) {
         List<UserDto> userDtos = new ArrayList<UserDto>();
         for (UserEntity ue : userEntities) {
