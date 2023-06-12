@@ -20,19 +20,18 @@ import com.example.demo.calculator.CalculatorController;
 import com.example.demo.calculator.CalculatorService;
 
 @WebMvcTest(CalculatorController.class)
-@AutoConfigureMockMvc
 public class WebMockTest {
 
-	// @Autowired
-	// private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-	// @MockBean
-	// private CalculatorService service;
+	@MockBean
+	private CalculatorService service;
 
-	@Disabled
+	@Test
 	public void greetingShouldReturnMessageFromService() throws Exception {
-		// when(service.eval("1+2=")).thenReturn("1+2=3");
-		// this.mockMvc.perform(get("/eval")).andDo(print()).andExpect(status().isOk())
-		// 		.andExpect(content().string(containsString("1+2=3")));
+		when(service.eval("1+2=")).thenReturn("1+2=3");
+		this.mockMvc.perform(get("/eval?operation=1+2=")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().string(containsString("1+2=3")));
 	}
 }

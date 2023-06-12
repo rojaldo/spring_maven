@@ -19,19 +19,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.example.demo.greeting.GreetingController;
 
 @WebMvcTest(GreetingController.class)
-@AutoConfigureMockMvc
 //tag::test[]
 public class WebLayerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
-	@BeforeEach
-	public void setUp() {
-		// this.mockMvc = MockMvcBuilders.standaloneSetup(new GreetingController()).build();
-	}
-
-	@Disabled
+	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 
 		this.mockMvc.perform(get("/greet")).andDo(print()).andExpect(status().isOk())

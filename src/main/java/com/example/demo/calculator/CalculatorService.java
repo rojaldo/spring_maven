@@ -27,7 +27,7 @@ public class CalculatorService {
             case "div":
                 return num1 / num2;
             default:
-                return 0;
+                throw new IllegalArgumentException("Invalid operation: " + op);
         }
     }
 

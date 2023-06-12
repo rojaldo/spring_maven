@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.beers.BeerEntity;
@@ -26,13 +27,14 @@ public class DemoApplication {
 	}
 
 	// Get beers from API and save them to database
-	@Bean
-	public CommandLineRunner addBeers(BeersService beersService) {
-		return (args) -> {
-			BeerDto[] beers = beersService.getBeersFromApi();
-			System.out.println("Number of beers in database: " + beers.length);
-		};
-	}
+	// @Bean
+	// @Profile("!test")
+	// public CommandLineRunner addBeers(BeersService beersService) {
+	// 	return (args) -> {
+	// 		BeerDto[] beers = beersService.getBeersFromApi();
+	// 		System.out.println("Number of beers in database: " + beers.length);
+	// 	};
+	// }
 
 
 }
