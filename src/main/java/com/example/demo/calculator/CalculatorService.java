@@ -16,7 +16,7 @@ public class CalculatorService {
     String op = "";
     double result = 0;
 
-    double calculate(double num1, double num2, String op) {
+    public double calculate(double num1, double num2, String op) {
         switch (op) {
             case "sum":
                 return num1 + num2;
@@ -31,7 +31,7 @@ public class CalculatorService {
         }
     }
 
-    double calculateEval(double num1, double num2, String op) {
+    public double calculateEval(double num1, double num2, String op) {
         switch (op) {
             case "+":
                 return num1 + num2;
@@ -46,7 +46,7 @@ public class CalculatorService {
         }
     }
 
-    String encode(String op) {
+    public String encode(String op) {
         switch (op) {
             case "sum":
                 return "+";
@@ -61,7 +61,7 @@ public class CalculatorService {
         }
     }
 
-    String eval(String str) {
+    public String eval(String str) {
         for (int i = 0; i < str.length(); i++) {
             if (Character.isDigit(str.charAt(i))) {
                 int num = Character.getNumericValue(str.charAt(i));
@@ -82,7 +82,7 @@ public class CalculatorService {
         return resultStr;
     }
 
-    void processNumber(int num) {
+    public void processNumber(int num) {
         switch (currentState) {
             case INIT:
                 num1 = num;
@@ -106,7 +106,7 @@ public class CalculatorService {
 
     }
 
-    void processSymbol(String st) {
+    public void processSymbol(String st) {
         switch (this.currentState) {
             case INIT:
                 currentState = State.ERROR;
