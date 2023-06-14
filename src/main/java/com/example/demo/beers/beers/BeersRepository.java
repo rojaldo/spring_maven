@@ -1,4 +1,4 @@
-package com.example.demo.beers;
+package com.example.demo.beers.beers;
 
 
 import java.util.List;

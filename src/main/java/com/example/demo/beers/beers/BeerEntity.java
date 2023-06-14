@@ -1,9 +1,11 @@
-package com.example.demo.beers;
+package com.example.demo.beers.beers;
+
 
 import java.util.List;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.example.demo.beers.units.BeerUnitsEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.micrometer.common.lang.NonNull;
@@ -12,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 // import table
 import jakarta.persistence.Table;
@@ -63,6 +66,9 @@ public class BeerEntity{
     @NonNull
     @Min(0)
     private double ebc;
+
+    @OneToOne(mappedBy = "beer")
+    private BeerUnitsEntity beerUnits;
 
 
 }

@@ -1,4 +1,4 @@
-package com.example.demo.beers;
+package com.example.demo.beers.beers;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;

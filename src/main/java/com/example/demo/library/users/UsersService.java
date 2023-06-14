@@ -12,7 +12,7 @@ public class UsersService {
     @Autowired
     UsersRepository usersRepository;
 
-    Iterable<UserDto> getAllUsers() {
+    public Iterable<UserDto> getAllUsers() {
         List<UserEntity> userEntities = new ArrayList<UserEntity>();
         this.usersRepository.findAll().forEach(userEntities::add);
         return this.convertUserEntitiesToUserDtos(userEntities);
@@ -48,7 +48,7 @@ public class UsersService {
         return userDtos;
     }
 
-    UserDto createUser(UserDto user) {
+    public UserDto createUser(UserDto user) {
         System.out.println("user: " + user);
         UserEntity userEntity = UserEntity.builder()
                 .firstName(user.getFirstName())

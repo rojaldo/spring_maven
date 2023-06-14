@@ -138,4 +138,13 @@ public class CalculatorService {
 
     }
 
+    public void clear() {
+        currentState = State.INIT;
+        num1 = 0;
+        num2 = 0;
+        op = "";
+        result = 0;
+        resultStr = "";
+    }
+
 }

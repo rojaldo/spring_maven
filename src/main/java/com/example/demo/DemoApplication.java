@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.demo.beers.BeerEntity;
-import com.example.demo.beers.BeersRepository;
-import com.example.demo.beers.BeersService;
-import com.example.demo.beers.BeerDto;
+import com.example.demo.beers.beers.BeerDto;
+import com.example.demo.beers.beers.BeerEntity;
+import com.example.demo.beers.beers.BeersRepository;
+import com.example.demo.beers.beers.BeersService;
 
 @SpringBootApplication
 public class DemoApplication {

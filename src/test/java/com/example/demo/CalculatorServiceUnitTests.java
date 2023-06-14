@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.checkerframework.checker.units.qual.A;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class CalculatorServiceUnitTests {
     //inject service here
     @Autowired
     private CalculatorService calculatorService;
+
+    @BeforeEach
+    public void setUp() {
+        // remove calculator data before each test
+        calculatorService.clear();
+    }
 
     //test methods here
     @Test
